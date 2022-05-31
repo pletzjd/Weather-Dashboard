@@ -44,6 +44,20 @@ p {
   margin-bottom: 1rem;
 }
 
-ul,ol{
-  list-style: circle;
+
+/*Custom CSS*/
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: steelblue;
+  color: whitesmoke;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.card {
+  background-color: deepskyblue;
+  color: whitesmoke;
 }
