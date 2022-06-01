@@ -143,4 +143,20 @@ function searchFunc(event){
     
 }
 
+function historySearch(event){
+    event.stopPropagation();
+    event.preventDefault();
+    let element = event.target;
+    if (element.matches("button")){
+        currentCity = element.textContent;
+        getLatLon();
+        setTimeout(getWeather,1000);
+    }else{
+        return;
+    }
+
+        
+}
+
 searchButton.on('click', searchFunc)
+searchHistory.on('click',historySearch)
