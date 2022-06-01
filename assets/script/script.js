@@ -37,11 +37,20 @@ let day4Wind = $('#day4Wind');
 let day4Humidity = $('#day4Humidity');
 let day4Icon = $('#day4Icon');
 // 5 day forcast day 1 variables
-let dayDate = $('#dayDate');
+let day5Date = $('#day5Date');
 let day5Temp = $('#day5Temp');
 let day5Wind = $('#day5Wind');
 let day5Humidity = $('#day5Humidity');
 let day5Icon = $('#day5Icon');
+
+if(localStorage.getItem('cities')!==null){
+    cities = JSON.parse(localStorage.getItem('cities'))
+    for(i=0;i<cities.length;i++){
+        let history = $('<button>');
+        history.val(cities[i]);
+        searchHistory.append('<li><button>'+history.val()+'</button></li>');
+    }
+}
 
 
 function getLatLon(){
@@ -120,7 +129,7 @@ function searchFunc(event){
     currentCity = searchBar.val();
     
     cities.push(currentCity);
-    localStorage.setItem('cities',cities);
+    localStorage.setItem('cities',JSON.stringify(cities));
 
     let history = $('<button>');
     history.val(currentCity);
