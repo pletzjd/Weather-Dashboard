@@ -62,3 +62,9 @@ header {
   color: whitesmoke;
 }
 
+.UV {
+  width: fit-content;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  border-radius: .5rem;
+}
