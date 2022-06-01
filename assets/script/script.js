@@ -12,7 +12,6 @@ let todayTemp = $('#todayTemp');
 let todayWind = $('#todayWind');
 let todayHumidity = $('#todayHumidity');
 let todayUVI = $('#todayUVI');
-let todayIcon = $('#todayIcon');
 // 5 day forcast day 1 variables
 let day1Date = $('#day1Date');
 let day1Temp = $('#day1Temp');
@@ -62,33 +61,39 @@ function getWeather(){
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
             //current weather variables
             todayTemp.text('Temp: '+data.current.temp+' deg C');
             todayWind.text('Wind: '+data.current.wind_speed+' km/h');
             todayHumidity.text('Humidity: '+data.current.humidity+'%');
-            todayUVI.text('UV index: '+data.current.uvi);
-            todayIcon.text(data.current.weather[0].icon);
+            todayUVI.text(data.current.uvi);
+            cityDateIcon.text(currentCity+' '+moment().format('DD/MM/YYYY')+' '+data.current.weather[0].icon);
             //5 day forcast day 1 variables
+            day1Date.text(moment().format('DD/MM/YYYY'))
             day1Temp.text('Temp: '+data.daily[0].temp.day+' deg C');
             day1Wind.text('Wind: '+data.daily[0].wind_speed+' km/h');
             day1Humidity.text('Humidity: '+data.daily[0].humidity+'%');
             day1Icon.text(data.daily[0].weather[0].icon);
             // 5 day forcast day 2 variables
+            day2Date.text(moment().add(1,'d').format('DD/MM/YYYY'))
             day2Temp.text('Temp: '+data.daily[1].temp.day+' deg C');
             day2Wind.text('Wind: '+data.daily[1].wind_speed+' km/h');
             day2Humidity.text('Humidity: '+data.daily[1].humidity+'%');
             day2Icon.text(data.daily[1].weather[0].icon);
             // 5 day forcast day 3 variables
+            day3Date.text(moment().add(2,'d').format('DD/MM/YYYY'))
             day3Temp.text('Temp'+data.daily[2].temp.day+' deg C');
             day3Wind.text('Wind: '+data.daily[2].wind_speed+' km/h');
             day3Humidity.text('Humidity: '+data.daily[2].humidity+'%');
             day3Icon.text(data.daily[2].weather[0].icon);
             // 5 day forcast day 4 variables
+            day4Date.text(moment().add(3,'d').format('DD/MM/YYYY'))
             day4Temp.text('Temp: '+data.daily[3].temp.day+' deg C');
             day4Wind.text('Wind: '+data.daily[3].wind_speed+' km/h');
             day4Humidity.text('Himidity'+data.daily[3].humidity+'%');
             day4Icon.text(data.daily[3].weather[0].icon);
             // 5 day forcast day 1 variables
+            day5Date.text(moment().add(4,'d').format('DD/MM/YYYY'))
             day5Temp.text('Temp: '+data.daily[4].temp.day+' deg C');
             day5Wind.text('Wind: '+data.daily[4].wind_speed+' km/h');
             day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
@@ -104,6 +109,7 @@ function getWeather(){
                 todayUVI.css('background-color','red');
                 todayUVI.css('color','whitesmoke');
             }
+            
         });
 }
 
@@ -112,7 +118,6 @@ function searchFunc(event){
     event.preventDefault();
     
     currentCity = searchBar.val();
-    cityDateIcon.text(currentCity);
     
     cities.push(currentCity);
     localStorage.setItem('cities',cities);
