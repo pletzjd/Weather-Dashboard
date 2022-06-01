@@ -70,7 +70,7 @@ function getWeather(){
             todayIcon.text(data.current.weather[0].icon);
             //5 day forcast day 1 variables
             day1Temp.text('Temp: '+data.daily[0].temp.day+' deg C');
-            day1Wind.text('Wind'+data.daily[0].wind_speed+' km/h');
+            day1Wind.text('Wind: '+data.daily[0].wind_speed+' km/h');
             day1Humidity.text('Humidity: '+data.daily[0].humidity+'%');
             day1Icon.text(data.daily[0].weather[0].icon);
             // 5 day forcast day 2 variables
@@ -93,6 +93,17 @@ function getWeather(){
             day5Wind.text('Wind: '+data.daily[4].wind_speed+' km/h');
             day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
             day5Icon.text(data.daily[4].weather[0].icon);
+            //UV coloring
+            if(0<=todayUVI<=2){
+                todayUVI.css('background-color','green');
+                todayUVI.css('color','whitesmoke');
+            }else if(2<todayUVI<=7){
+                todayUVI.css('background-color','yellow');
+                todayUVI.css('color','whitesmoke');
+            }else{
+                todayUVI.css('background-color','red');
+                todayUVI.css('color','whitesmoke');
+            }
         });
 }
 
