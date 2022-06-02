@@ -8,6 +8,7 @@ let longitude = '';
 let latitude = '';
 //current weather variables
 let cityDateIcon = $('#cityDateIcon')
+let todayIcon = $('#todayIcon')
 let todayTemp = $('#todayTemp');
 let todayWind = $('#todayWind');
 let todayHumidity = $('#todayHumidity');
@@ -42,6 +43,14 @@ let day5Temp = $('#day5Temp');
 let day5Wind = $('#day5Wind');
 let day5Humidity = $('#day5Humidity');
 let day5Icon = $('#day5Icon');
+// icon code storage
+let todayIconCode = '';
+let day1IconCode = '';
+let day2IconCode = '';
+let day3IconCode = '';
+let day4IconCode = '';
+let day5IconCode = '';
+
 
 if(localStorage.getItem('cities')!==null){
     cities = JSON.parse(localStorage.getItem('cities'))
@@ -52,6 +61,35 @@ if(localStorage.getItem('cities')!==null){
     }
 }
 
+function iconSelect(iconCode){
+
+    if(iconCode === '01d'){
+        return 'fa-sun';
+    }else if(iconCode === '01n'){
+        return 'fa-moon';
+    }else if(iconCode === '02d'){
+        return 'fa-cloud-sun';
+    }else if(iconCode === '02n'){
+        return 'fa-cloud-moon';
+    }else if(iconCode === '03d' || iconCode === '03n'){
+        return 'fa-cloud';
+    }else if(iconCode === '04d' || iconCode === '04n'){
+        return 'fa-cloud';
+    }else if(iconCode === '09d' || iconCode === '09n'){
+        return 'fa-cloud-showers-heavy'
+    }else if (iconCode === '10d'){
+        return 'fa-cloud-sun-rain';
+    }else if(iconCode === '10n'){
+        return 'fa-cloud-moon-rain';
+    }else if(iconCode === '11d' || iconCode === '11n'){
+        return 'fa-cloud-bolt';
+    }else if(iconCode === '13d' || iconCode === '13n'){
+        return 'fa-snowflake'
+    }else{
+        return 'fa-smog';
+    }
+    
+}
 
 function getLatLon(){
     fetch('https://api.openweathermap.org/data/2.5/weather?q='+currentCity+'&appid='+APIKey)
@@ -65,6 +103,15 @@ function getLatLon(){
 }
 function getWeather(){
 
+    if(todayIconCode !== ''){
+        todayIcon.removeClass(iconSelect(todayIconCode));
+        day1Icon.removeClass(iconSelect(day1IconCode));
+        day2Icon.removeClass(iconSelect(day2IconCode));
+        day3Icon.removeClass(iconSelect(day3IconCode));
+        day4Icon.removeClass(iconSelect(day4IconCode));
+        day5Icon.removeClass(iconSelect(day5IconCode));
+    }
+
     fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+String(latitude)+'&lon='+String(longitude)+'&exclude=minutely,hourly&appid='+APIKey)
         .then(function (response) {
             return response.json();
@@ -76,37 +123,38 @@ function getWeather(){
             todayWind.text('Wind: '+data.current.wind_speed+' km/h');
             todayHumidity.text('Humidity: '+data.current.humidity+'%');
             todayUVI.text(data.current.uvi);
-            cityDateIcon.text(currentCity+' '+moment().format('DD/MM/YYYY')+' '+data.current.weather[0].icon);
+            cityDateIcon.text(currentCity+' '+moment().format('DD/MM/YYYY'));
+            todayIconCode = data.current.weather[0].icon
             //5 day forcast day 1 variables
             day1Date.text(moment().format('DD/MM/YYYY'))
             day1Temp.text('Temp: '+data.daily[0].temp.day+' deg C');
             day1Wind.text('Wind: '+data.daily[0].wind_speed+' km/h');
             day1Humidity.text('Humidity: '+data.daily[0].humidity+'%');
-            day1Icon.text(data.daily[0].weather[0].icon);
+            day1IconCode = data.daily[0].weather[0].icon;
             // 5 day forcast day 2 variables
             day2Date.text(moment().add(1,'d').format('DD/MM/YYYY'))
             day2Temp.text('Temp: '+data.daily[1].temp.day+' deg C');
             day2Wind.text('Wind: '+data.daily[1].wind_speed+' km/h');
             day2Humidity.text('Humidity: '+data.daily[1].humidity+'%');
-            day2Icon.text(data.daily[1].weather[0].icon);
+            day2IconCode = data.daily[1].weather[0].icon;
             // 5 day forcast day 3 variables
             day3Date.text(moment().add(2,'d').format('DD/MM/YYYY'))
             day3Temp.text('Temp'+data.daily[2].temp.day+' deg C');
             day3Wind.text('Wind: '+data.daily[2].wind_speed+' km/h');
             day3Humidity.text('Humidity: '+data.daily[2].humidity+'%');
-            day3Icon.text(data.daily[2].weather[0].icon);
+            day3IconCode = data.daily[2].weather[0].icon;
             // 5 day forcast day 4 variables
             day4Date.text(moment().add(3,'d').format('DD/MM/YYYY'))
             day4Temp.text('Temp: '+data.daily[3].temp.day+' deg C');
             day4Wind.text('Wind: '+data.daily[3].wind_speed+' km/h');
             day4Humidity.text('Himidity'+data.daily[3].humidity+'%');
-            day4Icon.text(data.daily[3].weather[0].icon);
+            day4IconCode = data.daily[3].weather[0].icon;
             // 5 day forcast day 1 variables
             day5Date.text(moment().add(4,'d').format('DD/MM/YYYY'))
             day5Temp.text('Temp: '+data.daily[4].temp.day+' deg C');
             day5Wind.text('Wind: '+data.daily[4].wind_speed+' km/h');
             day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
-            day5Icon.text(data.daily[4].weather[0].icon);
+            day5IconCode = data.daily[4].weather[0].icon;
             //UV coloring
             if(0<=todayUVI<=2){
                 todayUVI.css('background-color','green');
@@ -118,8 +166,15 @@ function getWeather(){
                 todayUVI.css('background-color','red');
                 todayUVI.css('color','whitesmoke');
             }
+            todayIcon.addClass(iconSelect(todayIconCode));
+            day1Icon.addClass(iconSelect(day1IconCode));
+            day2Icon.addClass(iconSelect(day2IconCode));
+            day3Icon.addClass(iconSelect(day3IconCode));
+            day4Icon.addClass(iconSelect(day4IconCode));
+            day5Icon.addClass(iconSelect(day5IconCode));
             
         });
+
 }
 
 function searchFunc(event){
