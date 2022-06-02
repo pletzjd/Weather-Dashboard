@@ -9,22 +9,15 @@ The live deployment of the site can be found at: https://pletzjd.github.io/Weath
 
 ## Usage
 
-The site loads with a welcome and a description of the rules. There are two clickable buttons under the description of the rules as shown below.
-![home screen](./assets/images/home-screen.png)
+The site loads with a with an initial location set as toronto as well as loading and previous search history saved in local storage
+![initial load](./assets/images/intial_load.png)
 
-Clicking the start button loads the first question and starts the timer in the top right corner of the page.
+Typing a city name in the search area (outlined in red below) will iniate a new search and write the new weather forcast for today as well as the five day forcast. A history section (outlined below in orange) gets the new search added to it at the bottom.
 
-![example question](./assets/images/Example-question.png)
+![highscore board](./assets/images/new_search.png)
 
-Once an answer is selected a new question is displayed. If a question is answered incorrectly 15 seconds is removed from the timer. Once all questions are answered or time reaches 0 the users remaining time becomes their score. The user is shown their score and shown a form to submit their name and score.
+The history section can also be interacted with by clicking one of the past results causing the weather data for that history item to be written to the page.
 
-![score submission form](./assets/images/score-submission.png)
-
-When the submit button is clicked the highscore board appears with the newly entered name and score. There are buttons at the botton to reset the highscore board, removing all previously saved scores.
-
-![highscore board](./assets/images/Highscores.png)
-
-The home button takes the user back to part of the page that was initially loaded. The highscore button on the initially loaded page can be clicked to go to the highscore board
 ## Credits
 
 Site  developper(s):
