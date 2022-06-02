@@ -51,14 +51,22 @@ let day3IconCode = '';
 let day4IconCode = '';
 let day5IconCode = '';
 
+//functions
 
-if(localStorage.getItem('cities')!==null){
-    cities = JSON.parse(localStorage.getItem('cities'))
-    for(i=0;i<cities.length;i++){
-        let history = $('<button>');
-        history.val(cities[i]);
-        searchHistory.append('<li><button>'+history.val()+'</button></li>');
+function init(){
+    if(localStorage.getItem('cities')!==null){
+        cities = JSON.parse(localStorage.getItem('cities'))
+        for(i=0;i<cities.length;i++){
+            let history = $('<button>');
+            history.val(cities[i]);
+            searchHistory.append('<li><button>'+history.val()+'</button></li>');
+        }
     }
+    currentCity = 'Toronto';
+
+    getLatLon();
+    
+    setTimeout(getWeather,1000)
 }
 
 function iconSelect(iconCode){
@@ -156,10 +164,10 @@ function getWeather(){
             day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
             day5IconCode = data.daily[4].weather[0].icon;
             //UV coloring
-            if(0<=todayUVI<=2){
+            if(0<=todayUVI.text() && todayUVI.text()<=2){
                 todayUVI.css('background-color','green');
                 todayUVI.css('color','whitesmoke');
-            }else if(2<todayUVI<=7){
+            }else if(2<todayUVI.text() && todayUVI.text()<=7){
                 todayUVI.css('background-color','yellow');
                 todayUVI.css('color','whitesmoke');
             }else{
@@ -215,3 +223,5 @@ function historySearch(event){
 
 searchButton.on('click', searchFunc)
 searchHistory.on('click',historySearch)
+
+init()
