@@ -47,6 +47,17 @@ p {
 
 /*Custom CSS*/
 
+button{
+  min-width: 15rem;
+  justify-content: center;
+  background-color: steelblue;
+  color: whitesmoke;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 header {
   display: flex;
   justify-content: center;
