@@ -127,40 +127,40 @@ function getWeather(){
         .then(function (data) {
             console.log(data);
             //current weather variables
-            todayTemp.text('Temp: '+(data.current.temp-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            todayWind.text('Wind: '+(data.current.wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            todayTemp.text('Temp: '+Math.round((data.current.temp-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            todayWind.text('Wind: '+Math.round((data.current.wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             todayHumidity.text('Humidity: '+data.current.humidity+'%');
             todayUVI.text(data.current.uvi);
             cityDateIcon.text(currentCity+' '+moment().format('DD/MM/YYYY'));
             todayIconCode = data.current.weather[0].icon
             //5 day forcast day 1 variables
             day1Date.text(moment().format('DD/MM/YYYY'))
-            day1Temp.text('Temp: '+(data.daily[0].temp.day-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            day1Wind.text('Wind: '+(data.daily[0].wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            day1Temp.text('Temp: '+Math.round((data.daily[0].temp.day-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            day1Wind.text('Wind: '+Math.round((data.daily[0].wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             day1Humidity.text('Humidity: '+data.daily[0].humidity+'%');
             day1IconCode = data.daily[0].weather[0].icon;
             // 5 day forcast day 2 variables
             day2Date.text(moment().add(1,'d').format('DD/MM/YYYY'))
-            day2Temp.text('Temp: '+(data.daily[1].temp.day-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            day2Wind.text('Wind: '+(data.daily[1].wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            day2Temp.text('Temp: '+Math.round((data.daily[1].temp.day-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            day2Wind.text('Wind: '+Math.round((data.daily[1].wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             day2Humidity.text('Humidity: '+data.daily[1].humidity+'%');
             day2IconCode = data.daily[1].weather[0].icon;
             // 5 day forcast day 3 variables
             day3Date.text(moment().add(2,'d').format('DD/MM/YYYY'))
-            day3Temp.text('Temp: '+(data.daily[2].temp.day-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            day3Wind.text('Wind: '+(data.daily[2].wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            day3Temp.text('Temp: '+Math.round((data.daily[2].temp.day-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            day3Wind.text('Wind: '+Math.round((data.daily[2].wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             day3Humidity.text('Humidity: '+data.daily[2].humidity+'%');
             day3IconCode = data.daily[2].weather[0].icon;
             // 5 day forcast day 4 variables
             day4Date.text(moment().add(3,'d').format('DD/MM/YYYY'))
-            day4Temp.text('Temp: '+(data.daily[3].temp.day-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            day4Wind.text('Wind: '+(data.daily[3].wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            day4Temp.text('Temp: '+Math.round((data.daily[3].temp.day-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            day4Wind.text('Wind: '+Math.round((data.daily[3].wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             day4Humidity.text('Humidity: '+data.daily[3].humidity+'%');
             day4IconCode = data.daily[3].weather[0].icon;
             // 5 day forcast day 1 variables
             day5Date.text(moment().add(4,'d').format('DD/MM/YYYY'))
-            day5Temp.text('Temp: '+(data.daily[4].temp.day-273.15)+' °C'); //-273.15 to convert from Kelvin to Celcius
-            day5Wind.text('Wind: '+(data.daily[4].wind_speed*3.6)+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
+            day5Temp.text('Temp: '+Math.round((data.daily[4].temp.day-273.15))+' °C'); //-273.15 to convert from Kelvin to Celcius
+            day5Wind.text('Wind: '+Math.round((data.daily[4].wind_speed*3.6))+' km/h'); //Multiply by 3.6 to convert from m/s to km/h
             day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
             day5IconCode = data.daily[4].weather[0].icon;
             //UV coloring
