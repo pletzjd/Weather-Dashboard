@@ -2,7 +2,6 @@ let searchButton = $('#searchButton');
 let searchBar = $('#searchBar');
 let cities = [];
 let searchHistory = $('#searchHistory');
-let APIKey = '84d085c88283aedb8eea3df65fad1fc6';
 let currentCity = '';
 let longitude = '';
 let latitude = '';
@@ -191,7 +190,7 @@ function getWeather(){
         day5Icon.removeClass(iconSelect(day5IconCode));
     }
 
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,is_day,weather_code,wind_speed_10m,uv_index&timezone=auto`)
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,is_day,weather_code,wind_speed_10m,uv_index&daily=weather_code,temperature_2m_max,wind_speed_10m_max,relative_humidity_2m_max&timezone=auto&forecast_days=5`)
         .then(function (response) {
             return response.json();
         })
@@ -211,35 +210,35 @@ function getWeather(){
             }
 
             //5 day forcast day 1 variables
-            // day1Date.text(moment().format('DD/MM/YYYY'))
-            // day1Temp.text('Temp: '+Math.round((data.daily[0].temp.day-273.15))+' °C'); 
-            // day1Wind.text('Wind: '+Math.round((data.daily[0].wind_speed*3.6))+' km/h'); 
-            // day1Humidity.text('Humidity: '+data.daily[0].humidity+'%');
-            // day1IconCode = data.daily[0].weather[0].icon;
-            // // 5 day forcast day 2 variables
-            // day2Date.text(moment().add(1,'d').format('DD/MM/YYYY'))
-            // day2Temp.text('Temp: '+Math.round((data.daily[1].temp.day-273.15))+' °C'); 
-            // day2Wind.text('Wind: '+Math.round((data.daily[1].wind_speed*3.6))+' km/h'); 
-            // day2Humidity.text('Humidity: '+data.daily[1].humidity+'%');
-            // day2IconCode = data.daily[1].weather[0].icon;
-            // // 5 day forcast day 3 variables
-            // day3Date.text(moment().add(2,'d').format('DD/MM/YYYY'))
-            // day3Temp.text('Temp: '+Math.round((data.daily[2].temp.day-273.15))+' °C'); 
-            // day3Wind.text('Wind: '+Math.round((data.daily[2].wind_speed*3.6))+' km/h'); 
-            // day3Humidity.text('Humidity: '+data.daily[2].humidity+'%');
-            // day3IconCode = data.daily[2].weather[0].icon;
-            // // 5 day forcast day 4 variables
-            // day4Date.text(moment().add(3,'d').format('DD/MM/YYYY'))
-            // day4Temp.text('Temp: '+Math.round((data.daily[3].temp.day-273.15))+' °C'); 
-            // day4Wind.text('Wind: '+Math.round((data.daily[3].wind_speed*3.6))+' km/h');
-            // day4Humidity.text('Humidity: '+data.daily[3].humidity+'%');
-            // day4IconCode = data.daily[3].weather[0].icon;
-            // // 5 day forcast day 1 variables
-            // day5Date.text(moment().add(4,'d').format('DD/MM/YYYY'))
-            // day5Temp.text('Temp: '+Math.round((data.daily[4].temp.day-273.15))+' °C');
-            // day5Wind.text('Wind: '+Math.round((data.daily[4].wind_speed*3.6))+' km/h');
-            // day5Humidity.text('Humidity: '+data.daily[4].humidity+'%');
-            // day5IconCode = data.daily[4].weather[0].icon;
+            day1Date.text(data.daily.time[0])
+            day1Temp.text(`Temp: ${data.daily.temperature_2m_max[0]} °C`); 
+            day1Wind.text(`Wind: ${data.daily.wind_speed_10m_max[0]} km/h`); 
+            day1Humidity.text(`Humidity: ${data.daily.relative_humidity_2m_max[0]}%`);
+            day1IconCode = `${data.daily.weather_code[0]}`.concat('d');
+            // 5 day forcast day 2 variables
+            day2Date.text(data.daily.time[1])
+            day2Temp.text(`Temp: ${data.daily.temperature_2m_max[1]} °C`); 
+            day2Wind.text(`Wind: ${data.daily.wind_speed_10m_max[1]} km/h`); 
+            day2Humidity.text(`Humidity: ${data.daily.relative_humidity_2m_max[1]}%`);
+            day2IconCode = `${data.daily.weather_code[1]}`.concat('d');
+            // 5 day forcast day 3 variables
+            day3Date.text(data.daily.time[2])
+            day3Temp.text(`Temp: ${data.daily.temperature_2m_max[2]} °C`); 
+            day3Wind.text(`Wind: ${data.daily.wind_speed_10m_max[2]} km/h`); 
+            day3Humidity.text(`Humidity: ${data.daily.relative_humidity_2m_max[2]}%`);
+            day3IconCode = `${data.daily.weather_code[2]}`.concat('d');
+            // 5 day forcast day 4 variables
+            day4Date.text(data.daily.time[3])
+            day4Temp.text(`Temp: ${data.daily.temperature_2m_max[3]} °C`); 
+            day4Wind.text(`Wind: ${data.daily.wind_speed_10m_max[3]} km/h`);
+            day4Humidity.text(`Humidity: ${data.daily.relative_humidity_2m_max[3]}%`);
+            day4IconCode = `${data.daily.weather_code[3]}`.concat('d');
+            // 5 day forcast day 1 variables
+            day5Date.text(data.daily.time[4])
+            day5Temp.text(`Temp: ${data.daily.temperature_2m_max[4]} °C`);
+            day5Wind.text(`Wind: ${data.daily.wind_speed_10m_max[4]} km/h`);
+            day5Humidity.text(`Humidity: ${data.daily.relative_humidity_2m_max[4]}%`);
+            day5IconCode = `${data.daily.weather_code[4]}`.concat('d');
             //UV coloring
             if(0<=todayUVI.text() && todayUVI.text()<=2){
                 todayUVI.css('background-color','green');
