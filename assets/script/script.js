@@ -52,7 +52,6 @@ let day4IconCode = '';
 let day5IconCode = '';
 
 //functions
-
 function init(){
     if(localStorage.getItem('cities')!==null){
         cities = JSON.parse(localStorage.getItem('cities'))
@@ -70,33 +69,89 @@ function init(){
 }
 
 function iconSelect(iconCode){
-
-    if(iconCode === '01d'){
-        return 'fa-sun';
-    }else if(iconCode === '01n'){
-        return 'fa-moon';
-    }else if(iconCode === '02d'){
-        return 'fa-cloud-sun';
-    }else if(iconCode === '02n'){
-        return 'fa-cloud-moon';
-    }else if(iconCode === '03d' || iconCode === '03n'){
-        return 'fa-cloud';
-    }else if(iconCode === '04d' || iconCode === '04n'){
-        return 'fa-cloud';
-    }else if(iconCode === '09d' || iconCode === '09n'){
-        return 'fa-cloud-showers-heavy'
-    }else if (iconCode === '10d'){
-        return 'fa-cloud-sun-rain';
-    }else if(iconCode === '10n'){
-        return 'fa-cloud-moon-rain';
-    }else if(iconCode === '11d' || iconCode === '11n'){
-        return 'fa-cloud-bolt';
-    }else if(iconCode === '13d' || iconCode === '13n'){
-        return 'fa-snowflake'
-    }else{
-        return 'fa-smog';
-    }
-    
+    let icon = ''
+    switch (iconCode){
+        case '0d':
+        case '1d':
+            icon = 'fa-sun';
+            break;
+        case '0n':
+        case '1n':
+            icon = 'fa-moon';
+            break;
+        case '2d':
+            icon = 'fa-cloud-sun';
+            break;
+        case '2n':
+            icon = 'fa-cloud-moon';
+            break;
+        case '3d':
+        case '3n':
+            icon = 'fa-cloud';
+            break;
+        case '45d':
+        case '45n':
+        case '48n':
+        case '48n':
+            icon = 'fa-smog';
+            break;
+        case '51d':
+        case '51n':
+        case '53d':
+        case '53n':
+        case '55d':
+        case '55n':
+        case '56d':
+        case '56n':
+        case '57d':
+        case '57n':
+        case '80d':
+        case '80n':
+        case '81d':
+        case '81n':
+        case '82d':
+        case '82n':
+            icon = 'fa-cloud-showers-heavy';
+            break;
+        case '61d':
+        case '63d':
+        case '65d':
+        case '66d':
+        case '67d':
+            icon = 'fa-cloud-sun-rain';
+            break;
+        case '61n':
+        case '63n':
+        case '65n':
+        case '66n':
+        case '67n':
+            icon = 'fa-cloud-moon-rain';
+            break;
+        case '71d':
+        case '71n':
+        case '73d':
+        case '73n':
+        case '75d':
+        case '75n':
+        case '77d':
+        case '77n':
+        case '85d':
+        case '85n':
+        case '86d':
+        case '86n':
+            icon = 'fa-snowflake';
+            break;
+        case '95d':
+        case '95n':
+        case '96d':
+        case '96n':
+        case '99d':
+        case '99n':
+            icon = 'fa-cloud-bolt';
+            break;
+        default:
+            icon = 'fa-question';
+    }    
 }
 
 function getLatLon(){
