@@ -100,13 +100,28 @@ function iconSelect(iconCode){
 }
 
 function getLatLon(){
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+currentCity+'&appid='+APIKey)
+    //Creates url for api get request
+    let searchArr = currentCity.split(',');
+    let url = 'https://geocoding-api.open-meteo.com/v1/search?name=';
+
+    for(let i = 0; i < searchArr.length; i++){
+        if(i >= 1){
+            url = url.concat('%2C+')
+        }
+
+        url = url.concat(searchArr[i].trim())
+    }
+
+    url = url.concat('&count=1&language=en&format=json')
+
+    //Gets longitude and latitude of currently searched city
+    fetch(url)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        latitude = data.coord.lat;
-        longitude = data.coord.lon;
+        latitude = data.results[0].latitude;
+        longitude = data.results[0].longitude;
     });
 }
 function getWeather(){
