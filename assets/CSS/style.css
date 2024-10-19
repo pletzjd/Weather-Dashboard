@@ -46,6 +46,12 @@ p {
 
 
 /*Custom CSS*/
+body{
+  min-height: 100vh;
+  max-height: fit-content;
+  position: relative;
+  padding-bottom: 20rem;
+}
 
 button{
   min-width: 15rem;
@@ -58,7 +64,7 @@ button{
   margin-top: 0.5rem;
 }
 
-header {
+header, footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,11 +72,23 @@ header {
   color: whitesmoke;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  width: 100%;
+}
+
+footer{
+  position:absolute;
+  bottom:0;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
 }
 
 .card {
   background-color: deepskyblue;
   color: whitesmoke;
+}
+
+.logo{
+  border-radius: 100%;
 }
 
 .UV {
